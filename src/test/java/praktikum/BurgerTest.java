@@ -27,7 +27,10 @@ public class BurgerTest {
         Mockito.when(bun.getPrice()).thenReturn(bunPrice);
         Mockito.when(ingredient.getPrice()).thenReturn(ingredientPrice);
         float expectedPrice = bunPrice * 2 + ingredientPrice;
-        assertEquals(expectedPrice, burger.getPrice(), 0.0001F);
+
+        float actualPrice = burger.getPrice();
+
+        assertEquals(expectedPrice, actualPrice, 0.0001F);
     }
 
     @Test
@@ -45,6 +48,9 @@ public class BurgerTest {
                 "(==== " + bunName + " ====)\n" +
                 "\n" +
                 "Price: 0,000000\n";
-        assertEquals(expectedReceipt, burger.getReceipt());
+
+        String actualReceipt = burger.getReceipt();
+
+        assertEquals(expectedReceipt, actualReceipt);
     }
 }

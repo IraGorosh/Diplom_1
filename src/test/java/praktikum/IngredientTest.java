@@ -8,14 +8,14 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class IngredientTest {
-    private final IngredientType type;
-    private final String name;
-    private final float price;
+    private final IngredientType expectedType;
+    private final String expectedName;
+    private final float expectedPrice;
 
-    public IngredientTest(IngredientType type, String name, float price) {
-        this.type = type;
-        this.name = name;
-        this.price = price;
+    public IngredientTest(IngredientType expectedType, String expectedName, float expectedPrice) {
+        this.expectedType = expectedType;
+        this.expectedName = expectedName;
+        this.expectedPrice = expectedPrice;
     }
 
     @Parameterized.Parameters
@@ -29,19 +29,28 @@ public class IngredientTest {
 
     @Test
     public void getPriceIngredientReturnsCorrectValue() {
-        Ingredient ingredient = new Ingredient(type, name, price);
-        assertEquals(price, ingredient.getPrice(), 0.5F);
+        Ingredient ingredient = new Ingredient(expectedType, expectedName, expectedPrice);
+
+        float actualPrice = ingredient.getPrice();
+
+        assertEquals(expectedPrice, actualPrice, 0.5F);
     }
 
     @Test
     public void getNameIngredientReturnsCorrectValue() {
-        Ingredient ingredient = new Ingredient(type, name, price);
-        assertEquals(name, ingredient.getName());
+        Ingredient ingredient = new Ingredient(expectedType, expectedName, expectedPrice);
+
+        String actualName = ingredient.getName();
+
+        assertEquals(expectedName, actualName);
     }
 
     @Test
     public void getTypeIngredientReturnsCorrectValue() {
-        Ingredient ingredient = new Ingredient(type, name, price);
-        assertEquals(type, ingredient.getType());
+        Ingredient ingredient = new Ingredient(expectedType, expectedName, expectedPrice);
+
+        IngredientType actualType = ingredient.getType();
+
+        assertEquals(expectedType, actualType);
     }
 }

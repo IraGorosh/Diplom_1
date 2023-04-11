@@ -8,12 +8,12 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class BunTest {
-    private final String name;
-    private final float price;
+    private final String expectedName;
+    private final float expectedPrice;
 
-    public BunTest(String name, float price) {
-        this.name = name;
-        this.price = price;
+    public BunTest(String expectedName, float expectedPrice) {
+        this.expectedName = expectedName;
+        this.expectedPrice = expectedPrice;
     }
 
     @Parameterized.Parameters
@@ -26,15 +26,19 @@ public class BunTest {
 
     @Test
     public void getNameReturnsCorrectNameBun() {
-        Bun bun = new Bun(name, price);
+        Bun bun = new Bun(expectedName, expectedPrice);
+
         String actualGetName = bun.getName();
-        assertEquals(name, actualGetName);
+
+        assertEquals(expectedName, actualGetName);
     }
 
     @Test
     public void getPriceReturnsCorrectPriceBun() {
-        Bun bun = new Bun(name, price);
+        Bun bun = new Bun(expectedName, expectedPrice);
+
         float actualGetPrice = bun.getPrice();
-        assertEquals(price, actualGetPrice, 0.001F);
+
+        assertEquals(expectedPrice, actualGetPrice, 0.001F);
     }
 }
